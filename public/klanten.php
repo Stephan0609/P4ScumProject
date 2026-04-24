@@ -12,7 +12,7 @@
     <input type="submit" value="Adres" name="address">
 </form>
 
-<table>
+<table border="1">
     <thead>
         <tr>
             <td>Naam</td>
