@@ -26,7 +26,7 @@
 include("../src/customers.php");
 $customers = new Customers;
 // hier komt de code voor het maken van de tabel
-if(isset($_POST['search'])){
+if(isset($_POST['search'])) {
     $search = $_POST['search'];
 }
 if (isset($_POST['name'])) {
