@@ -26,7 +26,12 @@
 include("../src/customers.php");
 $customers = new Customers;
 // hier komt de code voor het maken van de tabel
-$search = $_POST['search'];
+if(isset($_POST['search'])){
+    $search = $_POST['search'];
+}
+else{
+    $search = "";
+}
 if (isset($_POST['name'])) {
     $result = $customers->GetCustomersOnName($search);
 } elseif (isset($_POST['firstName'])) {
@@ -41,7 +46,7 @@ if (isset($_POST['name'])) {
 
 foreach ($result as $r) {
     echo "<tr>";
-    $name = $r['firstName'] + " " + $r['lastName'];
+    $name = $r['firstName'] . " " . $r['lastName'];
     echo "<td>$name</td>";
     $email = $r['email'];
     echo "<td>$email</td>";
