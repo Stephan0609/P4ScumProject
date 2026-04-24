@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width:  min(1024px, 95%);
+    margin: 0 auto;
+}
+
+nav {
+    padding: 10px;
+    height: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row-reverse;
+    list-style: none;
+    gap: 15px;
+}
+
+nav ul a {
+    padding: 10px;
+    border-radius: 1em;
+    background-color: rgb(205, 205, 205);
+    text-decoration: none;
+    color: black;
+}
