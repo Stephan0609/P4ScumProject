@@ -39,5 +39,21 @@ Class Customers extends Database
         $result = parent::voerQueryUit($query, $params);
         return $result;
     }
+
+    function insertCustomer($firstName, $lastName, $email, $phone, $address)
+    {
+    if($firstName == "" || $lastName == "" || $email == "" || $phone == "" || $address == "")
+    { 
+        return false;
+    }
+
+    $query = "INSERT INTO customers (firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?)";
+
+    $params = [$firstName, $lastName, $email, $phone, $address];
+
+
+    return parent::voerQueryUit($query, $params) > 0;
+
+    }
 }
 ?>
