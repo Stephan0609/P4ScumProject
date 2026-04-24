@@ -14,8 +14,8 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Startpagina</a></li>
-                    <li><a href="#">Klanten</a></li>
-                    <li><a href="#">Voorraad</a></li>
+                    <li><a href="klanten.php">Klanten</a></li>
+                    <li><a href="voorraad.php">Voorraad</a></li>
                 </ul>
             </nav>
         </div>
