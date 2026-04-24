@@ -1,25 +1,25 @@
-<?php 
-    require("../src/authenticate.php");
-    $Authenticate = new Authenticate();
-    // $Authenticate->InsertUser("admin@admin", "admin");
-    // echo "true";
+<?php
+require("../src/authenticate.php");
+$Authenticate = new Authenticate();
 
-    session_start();
+// test account aanmaken
+// $Authenticate->InsertUser("admin@admin", "admin");
+// echo "true";
 
-    if (isset($_POST["send"])) {
-        if ($_POST["email"] != "" && $_POST["password"] != "" ) {
-            $user = $Authenticate->UserLogin($_POST["email"], $_POST["password"]);
-            
-            if (!$user) {
-                echo "Onjuiste inloggegevens";
-            } else {
-                $_SESSION["email"] = $user;
-                header("location: index.php");
-            }
-        } else {
-            echo "Vul alles in";
-        }
+session_start();
+
+if (isset($_POST["send"]) && $_POST["email"] != "") {
+    $user = $Authenticate->UserLogin($_POST["email"], $_POST["password"]);
+
+    if (!$user) {
+        echo "Onjuiste inloggegevens";
+    } else {
+        $_SESSION["email"] = $user;
+        header("location: index.php");
     }
+} else {
+    echo "Vul alles in";
+}
 ?>
 
 
