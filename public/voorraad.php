@@ -3,7 +3,7 @@
 <p>Klik <a href="index.php">hier</a> om terug te gaan.</p>
 <p>Klik <a href="">hier</a> om voorraad aan te passen.</p>
 
-<table>
+<table border="1">
     <thead>
         <tr>
             <td>Wat</td>

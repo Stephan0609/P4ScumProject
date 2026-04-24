@@ -12,7 +12,7 @@
     <input type="submit" value="Adres" name="address">
 </form>
 
-<table>
+<table border="1">
     <thead>
         <tr>
             <td>Naam</td>
@@ -43,7 +43,7 @@ if (isset($_POST['name'])) {
 
 foreach ($result as $r) {
     echo "<tr>";
-    $name = $r['firstName'] + " " + $r['lastName'];
+    $name = $r['firstName'] . " " . $r['lastName'];
     echo "<td>$name</td>";
     $email = $r['email'];
     echo "<td>$email</td>";
