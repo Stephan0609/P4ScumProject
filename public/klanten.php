@@ -29,9 +29,6 @@ $customers = new Customers;
 if(isset($_POST['search'])){
     $search = $_POST['search'];
 }
-else{
-    $search = "";
-}
 if (isset($_POST['name'])) {
     $result = $customers->GetCustomersOnName($search);
 } elseif (isset($_POST['firstName'])) {
