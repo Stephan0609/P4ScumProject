@@ -1,7 +1,7 @@
 <h1>Alle Klanten</h1>
 
 <p>Klik <a href="index.php">hier</a> om terug te gaan.</p>
-<p>Klik <a href="">hier</a> om een klant toe te voegen.</p>
+<p>Klik <a href="nieuweKlant.php">hier</a> om een klant toe te voegen.</p>
 
 <form action="" method="post">
     <p>Zoek op: </p>
