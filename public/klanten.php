@@ -1,7 +1,7 @@
 <h1>Alle Klanten</h1>
 
 <p>Klik <a href="index.php">hier</a> om terug te gaan.</p>
-<p>Klik <a href="">hier</a> om een klant toe te voegen.</p>
+<p>Klik <a href="nieuweKlant.php">hier</a> om een klant toe te voegen.</p>
 
 <form action="" method="post">
     <p>Zoek op: </p>
@@ -26,7 +26,9 @@
 include("../src/customers.php");
 $customers = new Customers;
 // hier komt de code voor het maken van de tabel
-$search = $_POST['search'];
+if (isset($_POST['search'])) {
+    $search = $_POST['search'];
+}
 if (isset($_POST['name'])) {
     $result = $customers->GetCustomersOnName($search);
 } elseif (isset($_POST['firstName'])) {
