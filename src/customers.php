@@ -40,7 +40,7 @@ Class Customers extends Database
         return $result;
     }
 
-    public function insertCustomer($firstName, $lastName, $email, $phone, $address)
+    function insertCustomer($firstName, $lastName, $email, $phone, $address)
     {
     if($firstName == "" || $lastName == "" || $email == "" || $phone == "" || $address == "")
     { 
