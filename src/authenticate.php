@@ -7,7 +7,12 @@ Class Authenticate extends Database
     {
         $query = "SELECT * FROM users WHERE email = ?";
         $result = parent::voerQueryUit($query);
-        return $result;
+        
+        if (count($result) > 0) {
+            return false;
+        }
+
+        return true;
     }
 }
 ?>
