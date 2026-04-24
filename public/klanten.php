@@ -13,6 +13,8 @@
         </tr>
     </thead>
 <?php
+include("../src/customers.php");
+$customers = new Customers;
 // hier komt de code voor het maken van de tabel
 ?>
 </table>
