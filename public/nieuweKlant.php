@@ -1,5 +1,5 @@
 <?php
-include("../Src/customers.php");
+include("../src/customers.php");
 
 $customers = new Customers();
 ?>
@@ -26,6 +26,7 @@ $customers = new Customers();
 if(isset($_POST['opslaan']))
     {
         $customers->insertCustomer($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['phone'], $_POST['address']);
+        header("Location: klanten.php");
     }
     // $alleCustomers = $customers->getAllCustomers();
     // print_r($alleCustomers);
