@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION["email"])) {
+    header("login.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
