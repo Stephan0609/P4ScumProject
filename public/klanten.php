@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION["email"])) {
+    header("login.php");
+}
+?>
+
 <h1>Alle Klanten</h1>
 
 <p>Klik <a href="index.php">hier</a> om terug te gaan.</p>
