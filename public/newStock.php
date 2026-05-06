@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION["email"])) {
+    header("login.php");
+}
 include("../src/stock.php");
 $stock = new Stock;
 $allStock = $stock->GetAllStock();
