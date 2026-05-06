@@ -5,6 +5,7 @@ if (!isset($_SESSION["email"])) {
 }
 
 include("../src/customers.php");
+include("../src/jobs.php");
 
 $customers = new Customers;
 
@@ -19,4 +20,20 @@ $address = $customer['address'];
 echo "<h1>$firstName $lastName</h1>";
 echo "<p>Email: $email<br>Telefoon: $phone<br>Adres: $address</p>";
 
+$jobs = new Jobs;
+$tasks = $jobs->GetAllJobsWithCustomerID($_GET['id']);
+echo "<table><thead><tr>
+<td>Titel</td><td>Beschrijving</td><td>Locatie</td>
+</tr></thead><tbody>";
+foreach ($tasks as $t) {
+    echo "<tr>";
+    $title = $t['title'];
+    echo "<td>$title</td>";
+    $desc = $t['description'];
+    echo "<td>$desc</td>";
+    $loc = $t['location'];
+    echo "<td>$loc</td>";
+    echo "</tr>";
+}
+echo "</tbody></table>";
 ?>
