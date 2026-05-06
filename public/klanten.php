@@ -25,6 +25,7 @@ if (!isset($_SESSION["email"])) {
             <td>Email</td>
             <td>Telefoon</td>
             <td>Adres</td>
+            <td>Bewerken</td>
         </tr>
     </thead>
     <tbody>
@@ -57,6 +58,8 @@ foreach ($result as $r) {
     echo "<td>$phone</td>";
     $address = $r['address'];
     echo "<td>$address</td>";
+    $id = $r['id'];
+    echo "<td><a href='klantEdit.php?id=$id'>Bewerk</a></td>";
     echo "</tr>";
 }
 

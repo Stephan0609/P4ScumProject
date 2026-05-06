@@ -10,6 +10,18 @@ Class Customers extends Database
         return $result;
     }
 
+    function GetCustomerOnId($id) {
+        $query = "SELECT * FROM customers WHERE id = ?";
+        $params = [$id];
+        $result = parent::voerQueryUit($query, $params);
+
+        if (count($result) > 0) {
+            return $result[0];
+        } else {
+            return false;
+        }
+    }
+
     function GetCustomersOnFirstName($firstName)
     {
         $query = "SELECT * FROM customers WHERE firstName LIKE ?";
@@ -54,6 +66,13 @@ Class Customers extends Database
 
     return parent::voerQueryUit($query, $params) > 0;
 
+    }
+
+    function UpdateCustomerAddress($id, $address) {
+        $query = "UPDATE customers SET address = ? WHERE id = ?";
+        $params = [$address, $id];
+        $result = parent::voerQueryUit($query, $params);
+        return $result;
     }
 }
 ?>
