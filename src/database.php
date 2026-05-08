@@ -40,3 +40,4 @@ class Database
         $this->sluitVerbinding();
     }
 }
+?>
