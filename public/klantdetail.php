@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["email"])) {
-    header("login.php");
+    header("Location: login.php");
 }
 
 include("../src/customers.php");
@@ -20,6 +20,14 @@ $address = $customer['address'];
 echo "<h1>$firstName $lastName</h1>";
 echo "<p>Email: $email<br>Telefoon: $phone<br>Adres: $address</p>";
 
+?>
+<form action="" method="POST">
+    Verander adres: <input type="text" name="nieuwAdres"><br>
+    <input type="submit" value="Verander adres" name="veranderAdres">
+</form>
+
+<?php
+
 $jobs = new Jobs;
 $tasks = $jobs->GetAllJobsWithCustomerID($_GET['id']);
 echo "<table><thead><tr>
@@ -36,4 +44,10 @@ foreach ($tasks as $t) {
     echo "</tr>";
 }
 echo "</tbody></table>";
+
+if (isset($_POST['veranderAdres'])) {
+    if (isset($_POST['nieuwAdres'])) {
+        $customers->updateCustomerAdres($_GET['id'], $_POST['nieuwAdres']);
+    }
+}
 ?>

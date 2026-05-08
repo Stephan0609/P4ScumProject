@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["email"])) {
-    header("login.php");
+    header("Location: login.php");
 }
 include("../src/customers.php");
 
@@ -9,11 +9,13 @@ $customers = new Customers();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form action="" method="POST">
         Voornaam: <input type="text" name="firstName"><br>
@@ -25,13 +27,13 @@ $customers = new Customers();
     </form>
     <a href="index.php">Terug</a><br>
 </body>
+
 </html>
 <?php
-if(isset($_POST['opslaan']))
-    {
-        $customers->insertCustomer($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['phone'], $_POST['address']);
-        header("Location: klanten.php");
-    }
-    // $alleCustomers = $customers->getAllCustomers();
-    // print_r($alleCustomers);
+if (isset($_POST['opslaan'])) {
+    $customers->insertCustomer($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['phone'], $_POST['address']);
+    header("Location: klanten.php");
+}
+// $alleCustomers = $customers->getAllCustomers();
+// print_r($alleCustomers);
 ?>

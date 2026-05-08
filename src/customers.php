@@ -1,7 +1,7 @@
 <?php
 include_once("database.php");
 
-Class Customers extends Database
+class Customers extends Database
 {
     function GetAllCustomers()
     {
@@ -54,25 +54,37 @@ Class Customers extends Database
 
     function insertCustomer($firstName, $lastName, $email, $phone, $address)
     {
-    if($firstName == "" || $lastName == "" || $email == "" || $phone == "" || $address == "")
-    { 
-        return false;
-    }
+        if ($firstName == "" || $lastName == "" || $email == "" || $phone == "" || $address == "") {
+            return false;
+        }
 
-    $query = "INSERT INTO customers (firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO customers (firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?)";
 
-    $params = [$firstName, $lastName, $email, $phone, $address];
+        $params = [$firstName, $lastName, $email, $phone, $address];
 
 
-    return parent::voerQueryUit($query, $params) > 0;
-
+        return parent::voerQueryUit($query, $params) > 0;
     }
 
     function UpdateCustomerAddress($id, $address) {
         $query = "UPDATE customers SET address = ? WHERE id = ?";
         $params = [$address, $id];
         $result = parent::voerQueryUit($query, $params);
-        return $result;
+        return $result[0];
+    }
+
+    function updateCustomerAdres($id, $adres)
+    {
+        if ($id == "" || $adres == "") {
+            return false;
+        }
+
+        $query = "UPDATE customers SET `address` = ? WHERE id = ?";
+
+        $params = [$adres, $id];
+
+
+        return parent::voerQueryUit($query, $params) > 0;
     }
 }
 ?>
