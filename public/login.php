@@ -1,7 +1,7 @@
 <?php 
     require("../src/authenticate.php");
     $Authenticate = new Authenticate();
-    // $Authenticate->InsertUser("admin@admin", "admin");
+    $Authenticate->InsertUser("admin@admin", "admin");
     // echo "true";
 
     session_start();

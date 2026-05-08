@@ -63,5 +63,20 @@ Class Customers extends Database
         $result = parent::voerQueryUit($query, $params);
         return $result[0];
     }
+
+    function updateCustomerAdres($id, $adres)
+    {
+        if($id == "" || $adres == "")
+        { 
+            return false;
+        }
+
+        $query = "UPDATE customers SET `address` = ? WHERE id = ?";
+
+        $params = [$adres, $id];
+
+
+        return parent::voerQueryUit($query, $params) > 0;
+    }
 }
 ?>
