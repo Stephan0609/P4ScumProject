@@ -9,7 +9,7 @@ include("../src/jobs.php");
 
 $customers = new Customers;
 
-$customer = $customers->GetCustomerOnID($_GET['id']);
+$customer = $customers->GetCustomerOnId($_GET['id']);
 
 $firstName = $customer['firstName'];
 $lastName = $customer['lastName'];

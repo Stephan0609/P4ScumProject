@@ -64,7 +64,6 @@ foreach ($result as $r) {
     echo "<td>$address</td>";
     $id = $r['id'];
     echo "<td><a href='klantdetail.php?id=$id'>Bekijk</a></td>";
-    $id = $r['id'];
     echo "<td><a href='klantEdit.php?id=$id'>Bewerk</a></td>";
     echo "</tr>";
 }
