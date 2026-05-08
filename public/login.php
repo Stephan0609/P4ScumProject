@@ -14,7 +14,7 @@
                 echo "Onjuiste inloggegevens";
             } else {
                 $_SESSION["email"] = $user;
-                header("location: index.php");
+                header("Location: index.php");
             }
         } else {
             echo "Vul alles in";
