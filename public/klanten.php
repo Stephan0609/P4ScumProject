@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["email"])) {
+    header("Location: login.php");
+}
+?>
+
 <h1>Alle Klanten</h1>
 
 <p>Klik <a href="index.php">hier</a> om terug te gaan.</p>
@@ -19,6 +26,7 @@
             <td>Email</td>
             <td>Telefoon</td>
             <td>Adres</td>
+            <td>Bekijk</td>
         </tr>
     </thead>
     <tbody>
@@ -51,6 +59,8 @@ foreach ($result as $r) {
     echo "<td>$phone</td>";
     $address = $r['address'];
     echo "<td>$address</td>";
+    $id = $r['id'];
+    echo "<td><a href='klantdetail.php?id=$id'>Bekijk</a></td>";
     echo "</tr>";
 }
 

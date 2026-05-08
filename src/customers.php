@@ -55,5 +55,13 @@ Class Customers extends Database
     return parent::voerQueryUit($query, $params) > 0;
 
     }
+
+    function GetCustomerOnID($id)
+    {
+        $query = "SELECT * FROM customers WHERE id = ?";
+        $params = [$id];
+        $result = parent::voerQueryUit($query, $params);
+        return $result;
+    }
 }
 ?>
