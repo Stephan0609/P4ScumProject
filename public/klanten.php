@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (!isset($_SESSION["email"])) {
     header("login.php");
 }
@@ -25,6 +26,7 @@ if (!isset($_SESSION["email"])) {
             <td>Email</td>
             <td>Telefoon</td>
             <td>Adres</td>
+            <td>Bekijk</td>
             <td>Bewerken</td>
         </tr>
     </thead>
@@ -58,6 +60,8 @@ foreach ($result as $r) {
     echo "<td>$phone</td>";
     $address = $r['address'];
     echo "<td>$address</td>";
+    $id = $r['id'];
+    echo "<td><a href='klantdetail.php?id=$id'>Bekijk</a></td>";
     $id = $r['id'];
     echo "<td><a href='klantEdit.php?id=$id'>Bewerk</a></td>";
     echo "</tr>";
