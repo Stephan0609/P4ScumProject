@@ -45,11 +45,9 @@ foreach ($tasks as $t) {
 }
 echo "</tbody></table>";
 
-if(isset($_POST['veranderAdres']))
-    {
-        if(isset($_POST['nieuwAdres']))
-            {
-                $customers->updateCustomerAdres($_GET['id'], $_POST['nieuwAdres']);
-            }
+if (isset($_POST['veranderAdres'])) {
+    if (isset($_POST['nieuwAdres'])) {
+        $customers->updateCustomerAdres($_GET['id'], $_POST['nieuwAdres']);
     }
+}
 ?>

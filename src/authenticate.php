@@ -1,13 +1,13 @@
 <?php
 include_once("database.php");
 
-Class Authenticate extends Database
+class Authenticate extends Database
 {
     function IsUserAvailable()
     {
         $query = "SELECT * FROM users WHERE email = ?";
         $result = parent::voerQueryUit($query);
-        
+
         if (count($result) > 0) {
             return false;
         }
@@ -15,13 +15,15 @@ Class Authenticate extends Database
         return true;
     }
 
-    function InsertUser($email, $password) {
+    function InsertUser($email, $password)
+    {
         $query = "INSERT INTO users (email, password) VALUES(?, ?)";
         $params = [$email, password_hash($password, PASSWORD_DEFAULT)];
         parent::voerQueryUit($query, $params);
     }
 
-    function UserLogin($email, $password) {
+    function UserLogin($email, $password)
+    {
         $query = "SELECT * FROM users WHERE email = ?";
         $params = [$email];
 

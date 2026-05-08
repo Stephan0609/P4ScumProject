@@ -1,7 +1,7 @@
 <?php
 include_once("database.php");
 
-Class Customers extends Database
+class Customers extends Database
 {
     function GetAllCustomers()
     {
@@ -42,18 +42,16 @@ Class Customers extends Database
 
     function insertCustomer($firstName, $lastName, $email, $phone, $address)
     {
-    if($firstName == "" || $lastName == "" || $email == "" || $phone == "" || $address == "")
-    { 
-        return false;
-    }
+        if ($firstName == "" || $lastName == "" || $email == "" || $phone == "" || $address == "") {
+            return false;
+        }
 
-    $query = "INSERT INTO customers (firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO customers (firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?)";
 
-    $params = [$firstName, $lastName, $email, $phone, $address];
+        $params = [$firstName, $lastName, $email, $phone, $address];
 
 
-    return parent::voerQueryUit($query, $params) > 0;
-
+        return parent::voerQueryUit($query, $params) > 0;
     }
 
     function GetCustomerOnID($id)
@@ -66,8 +64,7 @@ Class Customers extends Database
 
     function updateCustomerAdres($id, $adres)
     {
-        if($id == "" || $adres == "")
-        { 
+        if ($id == "" || $adres == "") {
             return false;
         }
 
