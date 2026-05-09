@@ -1,7 +1,7 @@
 <?php
 include_once("database.php");
 
-Class Jobs extends Database
+class Jobs extends Database
 {
     function GetAllJobsWithCustomerID($id)
     {
