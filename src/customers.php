@@ -71,7 +71,7 @@ Class Customers extends Database
             return false;
         }
 
-        $query = "UPDATE customers SET `address` = ? WHERE id = ?";
+        $query = "UPDATE customers SET address = ? WHERE id = ?";
 
         $params = [$adres, $id];
 
