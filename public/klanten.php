@@ -12,7 +12,9 @@ if (!isset($_SESSION["email"])) {
 
 <form action="" method="post">
     <p>Zoek op: </p>
-    <input type="text" name="search" value="<?php if(isset($_POST['search'])) {echo $_POST['search'];} ?>"><br>
+    <input type="text" name="search" value="<?php if (isset($_POST['search'])) {
+                                                echo $_POST['search'];
+                                            } ?>"><br>
     <input type="submit" value="Naam" name="name">
     <input type="submit" value="Voornaam" name="firstName">
     <input type="submit" value="Achternaam" name="lastName">
@@ -27,27 +29,28 @@ if (!isset($_SESSION["email"])) {
             <td>Telefoon</td>
             <td>Adres</td>
             <td>Bekijk</td>
+            <td>Bewerken</td>
         </tr>
     </thead>
     <tbody>
-<?php
-include("../src/customers.php");
-$customers = new Customers;
-// hier komt de code voor het maken van de tabel
-if (isset($_POST['search'])) {
-    $search = $_POST['search'];
-}
-if (isset($_POST['name'])) {
-    $result = $customers->GetCustomersOnName($search);
-} elseif (isset($_POST['firstName'])) {
-    $result = $customers->GetCustomersOnFirstName($search);
-} elseif (isset($_POST['lastName'])) {
-    $result = $customers->GetCustomersOnLastName($search);
-} elseif (isset($_POST['address'])) {
-    $result = $customers->GetCustomersOnAddress($search);
-} else {
-    $result = $customers->GetAllCustomers();
-}
+        <?php
+        include("../src/customers.php");
+        $customers = new Customers;
+        // hier komt de code voor het maken van de tabel
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+        }
+        if (isset($_POST['name'])) {
+            $result = $customers->GetCustomersOnName($search);
+        } elseif (isset($_POST['firstName'])) {
+            $result = $customers->GetCustomersOnFirstName($search);
+        } elseif (isset($_POST['lastName'])) {
+            $result = $customers->GetCustomersOnLastName($search);
+        } elseif (isset($_POST['address'])) {
+            $result = $customers->GetCustomersOnAddress($search);
+        } else {
+            $result = $customers->GetAllCustomers();
+        }
 
 foreach ($result as $r) {
     echo "<tr>";
@@ -61,9 +64,11 @@ foreach ($result as $r) {
     echo "<td>$address</td>";
     $id = $r['id'];
     echo "<td><a href='klantdetail.php?id=$id'>Bekijk</a></td>";
+    $id = $r['id'];
+    echo "<td><a href='klantEdit.php?id=$id'>Bewerk</a></td>";
     echo "</tr>";
 }
 
-?>
+        ?>
     </tbody>
 </table>
