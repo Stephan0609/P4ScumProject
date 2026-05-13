@@ -26,7 +26,7 @@ else{
 <form action="" method="POST">
     Titel: <input type="text" name="title"><br>
     Omschrijving klus: <textarea name="omschrijving" id=""></textarea><br>
-    Datum: <input type="text" name="date"><br>
+    Datum: <input type="date" name="date"><br>
     Locatie: <input type="text" name="location"><br>
     <input type="checkbox" name="paid">Betaald<br>
 
