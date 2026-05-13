@@ -33,7 +33,7 @@ echo("<a href='newJob.php?id=$id'>Nieuwe klus</a>");
 $jobs = new Jobs;
 $tasks = $jobs->GetAllJobsWithCustomerID($id);
 echo "<table><thead><tr>
-<td>Titel</td><td>Beschrijving</td><td>Locatie</td>
+<td>Titel</td><td>Beschrijving</td><td>Locatie</td><td>Uren gewerkt</td>
 </tr></thead><tbody>";
 foreach ($tasks as $t) {
     echo "<tr>";
@@ -43,6 +43,8 @@ foreach ($tasks as $t) {
     echo "<td>$desc</td>";
     $loc = $t['location'];
     echo "<td>$loc</td>";
+    $hours = $t['hoursWorked'];
+    echo "<td>$hours</td>";
     echo "</tr>";
 }
 echo "</tbody></table>";

@@ -25,6 +25,7 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
 if(!$tasks == [])
     {
         echo("Er is al een klus, klik <a href='klantdetail.php?id=$id'>hier</a> om terug te gaan");
+        exit;
     }
 
 else{
@@ -35,15 +36,19 @@ else{
     Omschrijving klus: <textarea name="omschrijving" id=""></textarea><br>
     Datum: <input type="text" name="date"><br>
     Locatie: <input type="text" name="location"><br>
+    Uren gewerkt: <input type="number" name="hours"><br>
     <input type="checkbox" name="paid">Betaald<br>
+    <input type="checkbox" name="invoice">Vacatuur gestuurd<br>
 
     <input type="submit" name="addJob" value="Maak klus"><br>
 </form>
 <?php
-if(isset($_POST['addJob']) && isset($_POST['omschrijving']) && isset($_POST['date']) && isset($_POST['title']) && isset($_POST['location']))
+if(isset($_POST['addJob']) && isset($_POST['omschrijving']) && isset($_POST['date']) && isset($_POST['title']) && isset($_POST['location'])
+    && isset($_POST['hours']))
     {
         $paid = isset($_POST['paid']) ? 1 : 0;
-        $jobs->addJob($_POST['omschrijving'], $_POST['date'], $id, $_POST['title'], $_POST['location'], $paid);
+        $invoiceSent = isset($_POST['invoice']) ? 1 : 0;
+        $jobs->addJob($_POST['omschrijving'], $_POST['date'], $id, $_POST['title'], $_POST['location'], $paid, $_POST['hours'], $invoiceSent);
     }
 }
 
