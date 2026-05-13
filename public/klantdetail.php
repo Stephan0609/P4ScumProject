@@ -1,5 +1,6 @@
 <?php
 session_start();
+$id = $_GET['id'];
 if (!isset($_SESSION["email"])) {
     header("Location: login.php");
 }
@@ -9,7 +10,7 @@ include("../src/jobs.php");
 
 $customers = new Customers;
 
-$customer = $customers->GetCustomerOnId($_GET['id']);
+$customer = $customers->GetCustomerOnID($id);
 
 $firstName = $customer['firstName'];
 $lastName = $customer['lastName'];
@@ -23,13 +24,14 @@ echo "<p>Email: $email<br>Telefoon: $phone<br>Adres: $address</p>";
 ?>
 <form action="" method="POST">
     Verander adres: <input type="text" name="nieuwAdres"><br>
-    <input type="submit" value="Verander adres" name="veranderAdres">
+    <input type="submit" value="Verander adres" name="veranderAdres"><br><br>
 </form>
 
 <?php
+echo("<a href='newJob.php?id=$id'>Nieuwe klus</a>");
 
 $jobs = new Jobs;
-$tasks = $jobs->GetAllJobsWithCustomerID($_GET['id']);
+$tasks = $jobs->GetAllJobsWithCustomerID($id);
 echo "<table><thead><tr>
 <td>Titel</td><td>Beschrijving</td><td>Locatie</td>
 </tr></thead><tbody>";
@@ -45,9 +47,12 @@ foreach ($tasks as $t) {
 }
 echo "</tbody></table>";
 
-if (isset($_POST['veranderAdres'])) {
-    if (isset($_POST['nieuwAdres'])) {
-        $customers->updateCustomerAdres($_GET['id'], $_POST['nieuwAdres']);
+if(isset($_POST['veranderAdres']))
+    {
+        if(isset($_POST['nieuwAdres']))
+            {
+                $customers->updateCustomerAdres($id, $_POST['nieuwAdres']);
+            }
     }
-}
 ?>
+<a href="klanten.php">Terug</a>
