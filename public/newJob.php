@@ -22,23 +22,19 @@ $usedMaterials = $materials->GetUsedMaterials($id);
 $jobs = new Jobs;
 $tasks = $jobs->GetAllJobsWithCustomerID($id);
 
-if(!$tasks == [])
-    {
-        echo("Er is al een klus, klik <a href='klantdetail.php?id=$id'>hier</a> om terug te gaan");
-        exit;
-    }
 
-else{
-    echo "<td><a href='klantdetail.php?id=$id'>Terug</a></td>";
+echo "<td><a href='klantdetail.php?id=$id'>Terug</a></td>";
 ?>
 <form action="" method="POST">
     Titel: <input type="text" name="title"><br>
     Omschrijving klus: <textarea name="omschrijving" id=""></textarea><br>
-    Datum: <input type="text" name="date"><br>
+    Datum: <input type="date" name="date"><br>
     Locatie: <input type="text" name="location"><br>
     Uren gewerkt: <input type="number" name="hours"><br>
+    Totale kosten: <input type="number" step=".01" name="totalCost"><br>
     <input type="checkbox" name="paid">Betaald<br>
     <input type="checkbox" name="invoice">Vacatuur gestuurd<br>
+    <input type="checkbox" name="inkopen">Moest extra materialen kopen<br>
 
     <input type="submit" name="addJob" value="Maak klus"><br>
 </form>
@@ -48,24 +44,11 @@ if(isset($_POST['addJob']) && isset($_POST['omschrijving']) && isset($_POST['dat
     {
         $paid = isset($_POST['paid']) ? 1 : 0;
         $invoiceSent = isset($_POST['invoice']) ? 1 : 0;
-        $jobs->addJob($_POST['omschrijving'], $_POST['date'], $id, $_POST['title'], $_POST['location'], $paid, $_POST['hours'], $invoiceSent);
+        $inkopen = isset($_POST['inkopen']) ? 1 : 0;
+        $jobs->addJob($_POST['omschrijving'], $_POST['date'], $id, $_POST['title'], $_POST['location'], $paid, $_POST['hours'], $invoiceSent, $_POST['totalCost'], $inkopen);
     }
-}
 
-echo "<table><thead><tr>
-<td>Naam</td><td>Hoeveel</td>
-</tr></thead><tbody>";
-foreach ($fullStock as $s) {
-    echo "<tr>";
-    $name = $s['name'];
-    echo "<td>$name</td>";
-    $quantity = $s['quantity'];
-    echo "<td>$quantity</td>";
-    // echo "<td><input type='text' name='material'</td>";
-    // echo "<td><input type='submit' name='changeQuantity' value='Voeg toe'></td>";
-    // $id = $r['id'];
-    // echo "<td><a href='klantdetail.php?id=$id'>Verander </a></td>";
-}
+
 echo "</tbody></table><br><br>";
 // echo '<input type="submit" name="changeQuantity" value="Verander hoeveel"><br>';
 echo "Alle gebruikte materialen:<br><br>";

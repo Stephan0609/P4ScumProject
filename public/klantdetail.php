@@ -32,22 +32,30 @@ echo("<a href='newJob.php?id=$id'>Nieuwe klus</a>");
 
 $jobs = new Jobs;
 $tasks = $jobs->GetAllJobsWithCustomerID($id);
-echo "<table><thead><tr>
-<td>Titel</td><td>Beschrijving</td><td>Locatie</td><td>Uren gewerkt</td>
-</tr></thead><tbody>";
-foreach ($tasks as $t) {
-    echo "<tr>";
-    $title = $t['title'];
-    echo "<td>$title</td>";
-    $desc = $t['description'];
-    echo "<td>$desc</td>";
-    $loc = $t['location'];
-    echo "<td>$loc</td>";
-    $hours = $t['hoursWorked'];
-    echo "<td>$hours</td>";
-    echo "</tr>";
+if($tasks != [])
+    {
+        echo "<table><thead><tr>
+        <td>Titel</td><td>Beschrijving</td><td>Locatie</td><td>Uren gewerkt </td><td> totale kosten</td>
+        </tr></thead><tbody>";
+        foreach ($tasks as $t) {
+            echo "<tr>";
+            $title = $t['title'];
+            echo "<td>$title</td>";
+            $desc = $t['description'];
+            echo "<td>$desc</td>";
+            $loc = $t['location'];
+            echo "<td>$loc</td>";
+            $hours = $t['hoursWorked'];
+            echo "<td>$hours</td>";
+            $cost = $t['totalCost'];
+            echo "<td>$cost</td>";
+            echo "</tr>";
+        }
+        echo "</tbody></table>";
+    }
+else{
+    echo"<br>";
 }
-echo "</tbody></table>";
 
 if(isset($_POST['veranderAdres']))
     {
