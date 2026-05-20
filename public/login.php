@@ -8,6 +8,10 @@ $Authenticate = new Authenticate();
 
 session_start();
 
+if (isset($_SESSION["email"])) {
+    header("Location: index.php");
+}
+
 if (isset($_POST["send"]) && $_POST["email"] != "") {
     $user = $Authenticate->UserLogin($_POST["email"], $_POST["password"]);
 
@@ -15,7 +19,7 @@ if (isset($_POST["send"]) && $_POST["email"] != "") {
         echo "Onjuiste inloggegevens";
     } else {
         $_SESSION["email"] = $user;
-        header("location: index.php");
+        header("Location: index.php");
     }
 } else {
     echo "Vul alles in";
