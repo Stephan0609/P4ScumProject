@@ -21,9 +21,9 @@ if (!isset($_SESSION["email"])) {
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="index.php">Startpagina</a></li>
                     <li><a href="klanten.php">Klanten</a></li>
                     <li><a href="voorraad.php">Voorraad</a></li>
+                    <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
         </div>

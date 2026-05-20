@@ -29,7 +29,6 @@ if (!isset($_SESSION["email"])) {
             <td>Telefoon</td>
             <td>Adres</td>
             <td>Bekijk</td>
-            <td>Bewerken</td>
         </tr>
     </thead>
     <tbody>
@@ -60,12 +59,10 @@ foreach ($result as $r) {
     echo "<td>$email</td>";
     $phone = $r['phone'];
     echo "<td>$phone</td>";
-    $address = $r['address'];
+    $address = (isset($r['currentaddress'])) ? $r['currentaddress'] : $r['address'];
     echo "<td>$address</td>";
     $id = $r['id'];
     echo "<td><a href='klantdetail.php?id=$id'>Bekijk</a></td>";
-    $id = $r['id'];
-    echo "<td><a href='klantEdit.php?id=$id'>Bewerk</a></td>";
     echo "</tr>";
 }
 
