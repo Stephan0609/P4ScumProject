@@ -60,7 +60,7 @@ foreach ($result as $r) {
     echo "<td>$email</td>";
     $phone = $r['phone'];
     echo "<td>$phone</td>";
-    $address = $r['address'];
+    $address = $r['currentaddress'];
     echo "<td>$address</td>";
     $id = $r['id'];
     echo "<td><a href='klantdetail.php?id=$id'>Bekijk</a></td>";

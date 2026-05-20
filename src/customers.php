@@ -10,7 +10,8 @@ class Customers extends Database
         return $result;
     }
 
-    function GetCustomerOnId($id) {
+    function GetCustomerOnId($id)
+    {
         $query = "SELECT * FROM customers WHERE id = ?";
         $params = [$id];
         $result = parent::voerQueryUit($query, $params);
@@ -38,8 +39,10 @@ class Customers extends Database
     }
     function GetCustomersOnAddress($address)
     {
-        $query = "SELECT * FROM customers WHERE address LIKE ?";
-        $params = ["%$address%"];
+        $query = "SELECT *, oldaddresses.address AS oldaddress, customers.address AS currentaddress FROM customers
+        JOIN oldaddresses ON oldaddresses.customerid = customers.id
+        WHERE customers.address LIKE ? OR oldaddresses.address LIKE ?";
+        $params = ["%$address%", "%$address%"];
         $result = parent::voerQueryUit($query, $params);
         return $result;
     }
@@ -66,7 +69,8 @@ class Customers extends Database
         return parent::voerQueryUit($query, $params) > 0;
     }
 
-    function UpdateCustomerAddress($id, $address) {
+    function UpdateCustomerAddress($id, $address)
+    {
         $query = "UPDATE customers SET address = ? WHERE id = ?";
         $params = [$address, $id];
         $result = parent::voerQueryUit($query, $params);
@@ -79,6 +83,12 @@ class Customers extends Database
             return false;
         }
 
+        try {
+            $this->saveOldCustomerAddress($id);
+        } catch(Exception $e) {
+
+        }
+
         $query = "UPDATE customers SET address = ? WHERE id = ?";
 
         $params = [$adres, $id];
@@ -86,5 +96,14 @@ class Customers extends Database
 
         return parent::voerQueryUit($query, $params) > 0;
     }
+
+    function saveOldCustomerAddress($id)
+    {
+        $customer = $this->GetCustomerOnId($id);
+
+        $query = "INSERT INTO oldaddresses (customerId, address) VALUES (?, ?)";
+        $params = [$id, $customer["address"]];
+
+        parent::voerQueryUit($query, $params) > 0;
+    }
 }
-?>
