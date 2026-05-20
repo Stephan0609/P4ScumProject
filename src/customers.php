@@ -104,6 +104,6 @@ class Customers extends Database
         $query = "INSERT INTO oldaddresses (customerId, address) VALUES (?, ?)";
         $params = [$id, $customer["address"]];
 
-        parent::voerQueryUit($query, $params) > 0;
+        parent::voerQueryUit($query, $params);
     }
 }
