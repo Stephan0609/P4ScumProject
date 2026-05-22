@@ -35,9 +35,15 @@ class Jobs extends Database
 
     }
 
-    function updateInvoiceSendAndPaid($send, $paid, $id) {
-        $query = "UPDATE jobs SET invoiceSent = ?, paid = ? WHERE id = ?";
-        $params = [$send, $paid, $id];
+    function updateInvoice($send, $paid, $id, $invoicePaymentTerm) {
+        $query = "UPDATE jobs SET invoiceSent = ?, paid = ?, invoicePaymentTerm = ? WHERE id = ?";
+        $params = [$send, $paid, $invoicePaymentTerm, $id];
+        parent::voerQueryUit($query, $params);
+    }
+
+    function updateInvoiceSendDate($id) {
+        $query = "UPDATE jobs SET invoiceSentDate = NOW() WHERE id = ?";
+        $params = [$id];
         parent::voerQueryUit($query, $params);
     }
 }

@@ -47,13 +47,17 @@ if (isset($_POST['updateJob'])) {
     }
     if (isset($_POST["send"])) {
         $send = 1;
+
+        if ($_POST["previousSendState"] != 1) {
+            $jobs->updateInvoiceSendDate($_POST["id"]);
+        }
     } 
 
     if (isset($_POST["paid"])) {
         $paid = 1;
     }
 
-    $jobs->updateInvoiceSendAndPaid($send, $paid, $_POST["id"]);
+    $jobs->updateInvoice($send, $paid, $_POST["id"], $_POST["invoicePaymentTerm"]);
 }
 
 $tasks = $jobs->GetAllJobsWithCustomerID($id);
@@ -68,12 +72,14 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
             <td>Uren gewerkt</td>
             <td>Totale Kosten</td>
             <td>Factuur Verstuurd</td>
+            <td>Factuur Betaal Termijn</td>
             <td>Factuur Betaald</td>
             <td>Update</td>
         </tr>
         <?php foreach ($tasks as $t): ?>
             <form action="" method="post">
                 <input type="hidden" name="id" value="<?= $t['id'] ?>">
+                <input type="hidden" name="previousSendState" value="<?= $t['invoiceSent'] ?>">
                 <tr>
                     <td><?= $t['title'] ?></td>
                     <td><?= $t['description'] ?></td>
@@ -81,6 +87,7 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
                     <td><?= $t['hoursWorked'] ?></td>
                     <td><?= $t['totalCost'] ?></td>
                     <td><input type="checkbox" name="send" <?php if ($t['invoiceSent'] == 1) echo "checked" ?>></td>
+                    <td><input type="number" name="invoicePaymentTerm" value="<?= $t['invoicePaymentTerm'] ?>"></td>
                     <td><input type="checkbox" name="paid" <?php if ($t['paid'] == 1) echo "checked" ?>></td>
                     <td><input type="submit" name="updateJob" value="update"></td>
                 </tr>
