@@ -54,8 +54,6 @@ if (isset($_POST['updateJob'])) {
     }
 
     $jobs->updateInvoiceSendAndPaid($send, $paid, $_POST["id"]);
-
-    print_r($_POST);
 }
 
 $tasks = $jobs->GetAllJobsWithCustomerID($id);
