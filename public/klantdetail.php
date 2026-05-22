@@ -37,39 +37,18 @@ echo "<p>Email: $email<br>Telefoon: $phone<br>Adres: $address</p>";
 echo ("<a href='newJob.php?id=$id'>Nieuwe klus</a>");
 
 $jobs = new Jobs;
-$tasks = $jobs->GetAllJobsWithCustomerID($id);
-if($tasks != [])
-    {
-        echo "<table><thead><tr>
-        <td>Titel</td><td>Beschrijving</td><td>Locatie</td><td>Uren gewerkt </td><td> totale kosten</td>
-        </tr></thead><tbody>";
-        foreach ($tasks as $t) {
-            echo "<tr>";
-            $title = $t['title'];
-            echo "<td>$title</td>";
-            $desc = $t['description'];
-            echo "<td>$desc</td>";
-            $loc = $t['location'];
-            echo "<td>$loc</td>";
-            $hours = $t['hoursWorked'];
-            echo "<td>$hours</td>";
-            $cost = $t['totalCost'];
-            echo "<td>$cost</td>";
-            echo "</tr>";
-        }
-        echo "</tbody></table>";
-    }
-else{
-    echo"<br>";
-}
 
-if(isset($_POST['veranderAdres']))
-    {
-        if(isset($_POST['nieuwAdres']))
-            {
-                $customers->updateCustomerAdres($id, $_POST['nieuwAdres']);
-            }
+if (isset($_POST['updateJob'])) {
+    $send = 0;
+    $paid = 0;
+
+    if (isset($_POST['nieuwAdres'])) {
+        $customers->updateCustomerAdres($id, $_POST['nieuwAdres']);
     }
+    if (isset($_POST["send"])) {
+        $send = 1;
+    } 
+
     if (isset($_POST["paid"])) {
         $paid = 1;
     }
@@ -86,6 +65,8 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
             <td>Titel</td>
             <td>Beschrijving</td>
             <td>Locatie</td>
+            <td>Uren gewerkt</td>
+            <td>Totale Kosten</td>
             <td>Factuur Verstuurd</td>
             <td>Factuur Betaald</td>
             <td>Update</td>
@@ -97,6 +78,8 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
                     <td><?= $t['title'] ?></td>
                     <td><?= $t['description'] ?></td>
                     <td><?= $t['location'] ?></td>
+                    <td><?= $t['hoursWorked'] ?></td>
+                    <td><?= $t['totalCost'] ?></td>
                     <td><input type="checkbox" name="send" <?php if ($t['invoiceSent'] == 1) echo "checked" ?>></td>
                     <td><input type="checkbox" name="paid" <?php if ($t['paid'] == 1) echo "checked" ?>></td>
                     <td><input type="submit" name="updateJob" value="update"></td>
