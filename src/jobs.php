@@ -40,5 +40,12 @@ class Jobs extends Database
         $params = [$send, $paid, $id];
         parent::voerQueryUit($query, $params);
     }
+
+    function updateDescription($id, $desc) {
+        $query = "UPDATE jobs SET description = ? WHERE id = ?";
+        $params = [$desc, $id];
+        $result = parent::voerQueryUit($query, $params);
+        return $result;
+    }
 }
 ?>
