@@ -17,8 +17,8 @@ if (!isset($_SESSION["email"])) {
 </head>
 
 <body>
-    <header>
-        <div class="container">
+    <header class="container">
+        <div>
             <nav>
                 <ul>
                     <li><a href="klanten.php">Klanten</a></li>
