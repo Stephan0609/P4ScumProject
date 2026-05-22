@@ -75,7 +75,9 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
         <?php foreach ($tasks as $t): ?>
             <form action="" method="post">
                 <input type="hidden" name="id" value="<?= $t['id'] ?>">
-                <tr>
+                <tr <?php if ($jobs->PaymentPeriodPassed($t['id'], new DateTime())) {
+                    echo "bgcolor='orange'";
+                } ?>>
                     <td><?= $t['title'] ?></td>
                     <td><input type="text" name="description" value="<?= $t['description'] ?>"></td>
                     <td><?= $t['location'] ?></td>
