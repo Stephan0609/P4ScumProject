@@ -58,6 +58,7 @@ if (isset($_POST['updateJob'])) {
     }
 
     $jobs->updateInvoice($send, $paid, $_POST["id"], $_POST["invoicePaymentTerm"]);
+    $jobs->updateDescription($_POST['id'], $_POST['description']);
 }
 
 $tasks = $jobs->GetAllJobsWithCustomerID($id);
@@ -82,7 +83,7 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
                 <input type="hidden" name="previousSendState" value="<?= $t['invoiceSent'] ?>">
                 <tr>
                     <td><?= $t['title'] ?></td>
-                    <td><?= $t['description'] ?></td>
+                    <td><input type="text" name="description" value="<?= $t['description'] ?>"></td>
                     <td><?= $t['location'] ?></td>
                     <td><?= $t['hoursWorked'] ?></td>
                     <td><?= $t['totalCost'] ?></td>
