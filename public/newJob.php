@@ -30,8 +30,9 @@ echo "<td><a href='klantdetail.php?id=$id'>Terug</a></td>";
     Omschrijving klus: <textarea name="omschrijving" id=""></textarea><br>
     Datum: <input type="date" name="date"><br>
     Locatie: <input type="text" name="location"><br>
-    Uren gewerkt: <input type="number" name="hours"><br>
-    Totale kosten: <input type="number" step=".01" name="totalCost"><br>
+    Uren gewerkt: <input type="number" value="0" name="hours"><br>
+    Voorrijkosten: <input type="number" step=".01" value="0" name="voorrijKosten"><br>
+    Totale kosten: <input type="number" step=".01" value="0" name="totalCost"><br>
     <input type="checkbox" name="paid">Betaald<br>
     <input type="checkbox" name="invoice">Vacatuur gestuurd<br>
     <input type="checkbox" name="inkopen">Moest extra materialen kopen<br>
@@ -42,10 +43,13 @@ echo "<td><a href='klantdetail.php?id=$id'>Terug</a></td>";
 if(isset($_POST['addJob']) && isset($_POST['omschrijving']) && isset($_POST['date']) && isset($_POST['title']) && isset($_POST['location'])
     && isset($_POST['hours']))
     {
+        if(!isset($_POST['voorrijKosten']))
+            $_POST['voorrijKosten'] = 0;
         $paid = isset($_POST['paid']) ? 1 : 0;
         $invoiceSent = isset($_POST['invoice']) ? 1 : 0;
         $inkopen = isset($_POST['inkopen']) ? 1 : 0;
-        $jobs->addJob($_POST['omschrijving'], $_POST['date'], $id, $_POST['title'], $_POST['location'], $paid, $_POST['hours'], $invoiceSent, $_POST['totalCost'], $inkopen);
+        $jobs->addJob($_POST['omschrijving'], $_POST['date'], $id, $_POST['title'], $_POST['location'], $paid, $_POST['hours'], $invoiceSent, $_POST['totalCost'], $inkopen, $_POST['voorrijKosten']);
+        header("Location: klantdetail.php?id=$id");
     }
 
 

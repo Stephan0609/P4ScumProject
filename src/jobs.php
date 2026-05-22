@@ -19,16 +19,16 @@ class Jobs extends Database
         return $result;
     }
 
-    function addJob($description, $date, $customerId, $title, $location, $paid, $worked, $invoice, $cost, $inkopen)
+    function addJob($description, $date, $customerId, $title, $location, $paid, $worked, $invoice, $cost, $inkopen, $voorrijKosten)
     {
     if($description == "" || $date == "" || $customerId == "" || $title == "" || $location == "" || $worked == "")
     { 
         return false;
     }
 
-    $query = "INSERT INTO jobs (description, date, customerId, title, location, paid, hoursWorked, invoiceSent, totalCost, boughtMaterials) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO jobs (description, date, customerId, title, location, paid, hoursWorked, invoiceSent, totalCost, boughtMaterials, callOutFee) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    $params = [$description, $date, $customerId, $title, $location, $paid, $worked, $invoice, $cost, $inkopen];
+    $params = [$description, $date, $customerId, $title, $location, $paid, $worked, $invoice, $cost, $inkopen, $voorrijKosten];
 
 
     return parent::voerQueryUit($query, $params) > 0;
