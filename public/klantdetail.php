@@ -83,7 +83,7 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
                 <input type="hidden" name="previousSendState" value="<?= $t['invoiceSent'] ?>">
                 <tr>
                     <td><?= $t['title'] ?></td>
-                    <td><input type="text" name="description" value="<?= $t['description'] ?>"></td>
+                    <td><textarea name="description" id=""><?= $t['description'] ?></textarea></td>
                     <td><?= $t['location'] ?></td>
                     <td><?= $t['hoursWorked'] ?></td>
                     <td><?= $t['totalCost'] ?></td>
