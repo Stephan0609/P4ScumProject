@@ -53,5 +53,15 @@ class Jobs extends Database
         $result = parent::voerQueryUit($query, $params);
         return $result;
     }
+
+    function PaymentPeriodPassed($id, Datetime $date) {
+        $job = $this->GetJobOnID($id);
+        if (!isset($job['invoiceSentDate'])) {
+            return false;
+        }
+        $start = new DateTime($job['invoiceSentDate']);
+        $days = $start->diff($date)->days;
+        return $days >= $job['invoicePaymentTerm'];
+    }
 }
 ?>

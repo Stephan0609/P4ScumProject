@@ -80,6 +80,9 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
         <?php foreach ($tasks as $t): ?>
             <form action="" method="post">
                 <input type="hidden" name="id" value="<?= $t['id'] ?>">
+                <tr <?php if ($jobs->PaymentPeriodPassed($t['id'], new DateTime())) {
+                    echo "bgcolor='orange'";
+                } ?>>
                 <input type="hidden" name="previousSendState" value="<?= $t['invoiceSent'] ?>">
                 <tr>
                     <td><?= $t['title'] ?></td>
