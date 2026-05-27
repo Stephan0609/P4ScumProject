@@ -34,6 +34,7 @@ echo "<p>Email: $email<br>Telefoon: $phone<br>Adres: $address</p>";
 </form>
 
 <?php
+echo('<a href="klanten.php">Terug</a><br>');
 echo ("<a href='newJob.php?id=$id'>Nieuwe klus</a>");
 
 $jobs = new Jobs;
@@ -88,4 +89,3 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
         <?php endforeach ?>
     </thead>
     <tbody>
-        <a href="klanten.php">Terug</a>
