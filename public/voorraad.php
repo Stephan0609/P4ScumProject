@@ -64,7 +64,6 @@ if (!isset($_SESSION["email"])) {
             ?>
         </tbody>
     </table>
-    <a href="index.php" class="button">Terug</a>
 </section>
 
 <script>
