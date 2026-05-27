@@ -79,9 +79,9 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
     }
 
 
-    echo "</tbody></table><br><br>";
+    echo "</tbody></table><br>";
     // echo '<input type="submit" name="changeQuantity" value="Verander hoeveel"><br>';
-    echo "Alle gebruikte materialen:<br><br>";
+    echo "Alle gebruikte materialen:<br>";
     if ($usedMaterials != []) {
         echo "<table class='klantDetailTable'><thead><tr>
         <td>Naam</td><td>Hoeveel</td>
@@ -93,12 +93,13 @@ $tasks = $jobs->GetAllJobsWithCustomerID($id);
             $quantity = $m['quantity'];
             echo "<td>$quantity</td>";
         }
-        echo "</tbody></table><br><br>";
+        echo "</tbody></table>";
     } else {
         echo ("er zijn nog geen gebruikte materialen <br><br>");
     }
     ?>
     <form action="" method="POST">
+        Materiaal toevoegen aan klus:<br>
         Naam: <input type="text" name="name"><br>
         Hoeveel: <input type="number" name="quantity"><br>
 
