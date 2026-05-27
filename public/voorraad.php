@@ -11,39 +11,61 @@ if (!isset($_SESSION["email"])) {
     }
 </style>
 
-<h1>Alle Voorraad</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<p>Klik <a href="index.php">hier</a> om terug te gaan.</p>
-<p>Klik <a href="newStock.php">hier</a> om voorraad aan te passen.</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voorraad</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
 
-<table border="1">
-    <thead>
-        <tr>
-            <td>Wat</td>
-            <td>Hoeveel</td>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        include("../src/stock.php");
-        $stock = new Stock;
-        // hier komt de code voor het maken van de tabel
-        $result = $stock->GetAllStock();
-        foreach ($result as $r) {
-            $quantity = $r["quantity"];
-            echo "<tr";
-            if ($quantity <= 3) {
-                echo " class='low'";
+<header class="container">
+    <div>
+        <h1>Voorraad</h1>
+        <nav>
+            <ul>
+                <li><a href="klanten.php">Klanten</a></li>
+                <li><a href="voorraad.php">Voorraad</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="container">
+    <a href="newStock.php" class="button">Pas voorraad aan</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Wat</td>
+                <td>Hoeveel</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            include("../src/stock.php");
+            $stock = new Stock;
+            // hier komt de code voor het maken van de tabel
+            $result = $stock->GetAllStock();
+            foreach ($result as $r) {
+                $quantity = $r["quantity"];
+                echo "<tr";
+                if ($quantity <= 3) {
+                    echo " class='low'";
+                }
+                echo ">";
+                $name = $r["name"];
+                echo "<td>$name</td>";
+                echo "<td>$quantity</td>";
+                echo "</tr>";
             }
-            echo ">";
-            $name = $r["name"];
-            echo "<td>$name</td>";
-            echo "<td>$quantity</td>";
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
+            ?>
+        </tbody>
+    </table>
+    <a href="index.php" class="button">Terug</a>
+</section>
 
 <script>
     const low = document.getElementsByClassName("low");
@@ -56,5 +78,5 @@ if (!isset($_SESSION["email"])) {
         alert(alertText);
     }
 
-//  
+    //  
 </script>
