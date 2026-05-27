@@ -11,8 +11,9 @@
 
 .zoekVoegKlantToeDiv {
     display: flex;
-
     justify-content: space-between;
+
+    margin-top: 15px;
 
     form {
         display: flex;
@@ -22,6 +23,20 @@
     form input {
         padding: 5px;
         border-radius: 1rem;
+    }
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    margin: 50px auto;
+
+    input {
+        padding: 10px;
+        border-radius: 1em;
+        border: 1px solid black;
     }
 }
 
@@ -43,7 +58,7 @@ header div {
 table {
     border-collapse: collapse;
     border: 1px solid black;
-    margin: 30px 0;
+    margin: 10px 0px 30px 0px;
     width: 100%;
 
     td {
