@@ -56,12 +56,13 @@ class Jobs extends Database
 
     function PaymentPeriodPassed($id, Datetime $date) {
         $job = $this->GetJobOnID($id);
-        if (!isset($job['invoiceSentDate'])) {
+        if (!isset($job[0]['invoiceSentDate'])) {
             return false;
         }
-        $start = new DateTime($job['invoiceSentDate']);
+        $start = new DateTime($job[0]['invoiceSentDate']);
         $days = $start->diff($date)->days;
-        return $days >= $job['invoicePaymentTerm'];
+
+        return $days >= $job[0]['invoicePaymentTerm'];
     }
 }
 ?>
