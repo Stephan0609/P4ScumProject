@@ -40,7 +40,7 @@ class Customers extends Database
     function GetCustomersOnAddress($address)
     {
         $query = "SELECT *, oldaddresses.address AS oldaddress, customers.address AS currentaddress FROM customers
-        JOIN oldaddresses ON oldaddresses.customerid = customers.id
+        LEFT JOIN oldaddresses ON oldaddresses.customerid = customers.id
         WHERE customers.address LIKE ? OR oldaddresses.address LIKE ?";
         $params = ["%$address%", "%$address%"];
         $result = parent::voerQueryUit($query, $params);
