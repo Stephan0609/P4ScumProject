@@ -5,11 +5,11 @@ if (!isset($_SESSION["email"])) {
 }
 ?>
 
-<style>
+<!-- <style>
     .low {
         background-color: orange;
     }
-</style>
+</style> -->
 
 <!DOCTYPE html>
 <html lang="en">

@@ -34,10 +34,10 @@ if (isset($_SESSION["email"])) {
                 header("Location: index.php");
             }
         } else {
-            echo "Vul alles in";
+            echo "Vul alles in<br>";
         }
         ?>
-        <input type="email" name="email" id="" placeholder="Email">
+        <input type="email" name="email" id="" placeholder="Email"><br>
         <input type="password" name="password" id="" placeholder="Wachtwoord">
         <br>
         <input type="submit" name="send" value="login">

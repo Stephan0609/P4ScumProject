@@ -97,8 +97,8 @@ $address = $customer['address'];
     }
 
     $tasks = $jobs->GetAllJobsWithCustomerID($id);
+    if($tasks != []) :
     ?>
-
     <table border='1'>
         <thead>
             <tr>
@@ -136,5 +136,8 @@ $address = $customer['address'];
             <?php endforeach ?>
         </tbody>
     </table>
+    <?php else : ?>
+        <br><p>Er zijn nog geen klussen</p><br>
+    <?php endif; ?>
     <a href="klanten.php" class="button">Terug</a>
 </section>
