@@ -38,7 +38,7 @@ $customers = new Customers();
         Adres<br><input type="text" name="address"><br>
         <input type="submit" value="Nieuw account aanmaken" name="opslaan"><br>
     </form>
-    <a href="index.php" class="button">Terug</a><br>
+    <a href="klanten.php" class="button">Terug</a><br>
 </section>
 
 <?php

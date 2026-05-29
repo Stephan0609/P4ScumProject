@@ -18,7 +18,7 @@ if (isset($_SESSION["email"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <section class="container">
@@ -37,8 +37,8 @@ if (isset($_SESSION["email"])) {
             echo "Vul alles in";
         }
         ?>
-        <input type="email" name="email" id="" placeholder="Email"><br>
-        <input type="password" name="password" id="" placeholder="Wachtwoord"><br>
+        <input type="email" name="email" id="" placeholder="Email">
+        <input type="password" name="password" id="" placeholder="Wachtwoord">
         <br>
         <input type="submit" name="send" value="login">
     </form>
